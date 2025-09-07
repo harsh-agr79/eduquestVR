@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Quiz Maze FPS - Working Version</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Debug Panel -->
+    <div id="debug-panel" class="debug-panel">
+        <div>FPS: <span id="fps-counter">0</span></div>
+        <div>Position: <span id="position-display">0, 0, 0</span></div>
+        <div>Keys: <span id="keys-display">-</span></div>
+        <div>Game State: <span id="game-state-display">start</span></div>
+        <div>Checkpoint Distance: <span id="checkpoint-distance-display">-</span></div>
+        <div>Enemies: <span id="enemies-count">0</span></div>
+    </div>
+    
+    <!-- Game Canvas -->
+    <canvas id="game-canvas"></canvas>
+    
+    <!-- Crosshair -->
+    <div id="crosshair"></div>
+    
+    <!-- Start Screen -->
+    <div id="start-screen" class="overlay">
+        <div class="overlay-content">
+            <h1>3D Quiz Maze FPS</h1>
+            <div class="instructions">
+                <h3>How to Play:</h3>
+                <ul>
+                    <li>Navigate through the maze using <strong>WASD</strong> keys</li>
+                    <li>Use <strong>mouse</strong> to look around</li>
+                    <li>Find glowing checkpoints to unlock quiz questions</li>
+                    <li>Shoot the enemy with the <strong>correct answer</strong> using <strong>left click</strong></li>
+                    <li>Wrong answers make remaining enemies faster!</li>
+                    <li>Don't let enemies get too close or it's game over!</li>
+                </ul>
+            </div>
+            <button id="start-game-btn" class="btn btn--primary btn--lg">Start Game</button>
+        </div>
+    </div>
+
+     <a
+        class="floating-btn"
+        href="https://eduquest-chi.vercel.app/dashboard"
+        aria-label="Open Course World"
+        title="Open Course World"
+        >
+        Go Back
+    </a>
+    
+    <!-- Game HUD -->
+    <div id="game-hud" class="hud hidden">
+        <div id="question-panel" class="question-panel hidden">
+            <div id="question-text" class="question-text"></div>
+            <div id="question-progress" class="question-progress"></div>
+        </div>
+        
+        <div id="game-status" class="game-status">
+            <div id="checkpoint-progress">Checkpoint: 0/8</div>
+            <div id="score-display">Score: 0</div>
+        </div>
+        
+        <div id="message-display" class="message-display hidden"></div>
+    </div>
+    
+    <!-- Game Over Screen -->
+    <div id="game-over-screen" class="overlay hidden">
+        <div class="overlay-content">
+            <h2 id="game-over-title">Game Over</h2>
+            <p id="game-over-message"></p>
+            <div id="final-score"></div>
+            <button id="restart-game-btn" class="btn btn--primary btn--lg">Play Again</button>
+        </div>
+    </div>
+    
+    <!-- Instructions Overlay -->
+    <div id="instructions-overlay" class="instructions-overlay">
+        <p>Click to enable mouse look and movement controls</p>
+    </div>
+
+    <!-- Load Three.js from CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/PointerLockControls.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

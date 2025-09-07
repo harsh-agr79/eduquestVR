@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Quest - 3D RPG Learning Adventure</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.34.1/min/vs/loader.js"></script>
+</head>
+<body>
+    <div class="game-container">
+        <!-- 3D Canvas -->
+        <canvas id="gameCanvas"></canvas>
+        
+        <!-- UI Overlays -->
+        <div class="ui-overlay">
+            <!-- Top Bar -->
+            <div class="top-bar">
+                <div class="stat-bars">
+                    <div class="stat-bar">
+                        <span class="stat-label">Health</span>
+                        <div class="bar-container">
+                            <div class="bar health-bar" id="healthBar"></div>
+                        </div>
+                        <span class="stat-value" id="healthValue">100/100</span>
+                    </div>
+                    <div class="stat-bar">
+                        <span class="stat-label">XP</span>
+                        <div class="bar-container">
+                            <div class="bar xp-bar" id="xpBar"></div>
+                        </div>
+                        <span class="stat-value" id="xpValue">0/250</span>
+                    </div>
+                </div>
+                <div class="current-zone" id="currentZone">Variables Village</div>
+            </div>
+
+            <!-- Quest Log -->
+            <div class="quest-panel" id="questPanel">
+                <h3>Current Quest</h3>
+                <div class="quest-content" id="questContent">
+                    <p>Explore the world and find NPCs to begin your Python learning journey!</p>
+                </div>
+            </div>
+
+            <!-- Minimap -->
+            <div class="minimap">
+                <div class="minimap-content">
+                    <div class="player-dot" id="playerDot"></div>
+                    <div class="zone-marker village-marker" data-zone="variables"></div>
+                    <div class="zone-marker forest-marker" data-zone="functions"></div>
+                    <div class="zone-marker lake-marker" data-zone="loops"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Inventory Panel -->
+        <div class="inventory-panel hidden" id="inventoryPanel">
+            <div class="panel-header">
+                <h3>Inventory</h3>
+                <button class="close-btn" onclick="toggleInventory()">&times;</button>
+            </div>
+            <div class="inventory-grid" id="inventoryGrid">
+                <!-- Inventory items will be populated here -->
+            </div>
+        </div>
+
+        <!-- Code Editor Modal -->
+        <div class="modal hidden" id="codeModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="challengeTitle">Coding Challenge</h3>
+                    <button class="close-btn" onclick="closeCodeModal()">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p id="challengeDescription">Complete the coding challenge to progress!</p>
+                    <div class="code-editor-container">
+                        <div id="codeEditor"></div>
+                    </div>
+                    <div class="code-actions">
+                        <button class="btn btn--primary" onclick="runCode()">Run Code</button>
+                        <button class="btn btn--secondary" onclick="showHint()">Get Hint</button>
+                        <button class="btn btn--outline" onclick="resetCode()">Reset</button>
+                    </div>
+                    <div class="code-output" id="codeOutput"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- NPC Dialog Modal -->
+        <div class="modal hidden" id="dialogModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="npcName">NPC</h3>
+                    <button class="close-btn" onclick="closeDialog()">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="npc-avatar" id="npcAvatar">🧙‍♂️</div>
+                    <p id="npcDialog">Hello, adventurer!</p>
+                    <div class="dialog-actions">
+                        <button class="btn btn--primary" onclick="acceptQuest()" id="acceptQuestBtn">Accept Quest</button>
+                        <button class="btn btn--outline" onclick="closeDialog()">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Controls Help -->
+        <div class="controls-help">
+            <p><strong>Controls:</strong> WASD to move, Mouse to look around, Tab for Inventory, E to interact</p>
+        </div>
+
+        <!-- Loading Screen -->
+        <div class="loading-screen" id="loadingScreen">
+            <div class="loading-content">
+                <h2>Python Quest</h2>
+                <p>Loading your 3D adventure...</p>
+                <div class="loading-spinner"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
